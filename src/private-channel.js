@@ -1,13 +1,13 @@
 Socky.PrivateChannel = Socky.Channel.extend({
 
-  init: function(channel_name, socky, options) {
+  init: function(channel_name, socky, options, data) {
     this._super(channel_name, socky);
     var default_permissions = {
       read: true,
       write: false,
       presence: false
     };
-    this._subscription_data = JSON.stringify(options['data']);
+    this._subscription_data = JSON.stringify(data);
     this._permissions = Socky.Utils.extend({}, default_permissions, options);
   },
 

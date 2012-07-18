@@ -333,6 +333,7 @@ this.Socky.Client = Events.extend({
   }
 
 });
+
 Socky.Utils = {
   breaker: {},
   log: function() {
@@ -556,14 +557,14 @@ Socky.Channel = Events.extend({
 
 Socky.PrivateChannel = Socky.Channel.extend({
 
-  init: function(channel_name, socky, options) {
+  init: function(channel_name, socky, options, data) {
     this._super(channel_name, socky);
     var default_permissions = {
       read: true,
       write: false,
       presence: false
     };
-    this._subscription_data = JSON.stringify(options['data']);
+    this._subscription_data = JSON.stringify(data);
     this._permissions = Socky.Utils.extend({}, default_permissions, options);
   },
 
@@ -664,8 +665,8 @@ Socky.PrivateChannel = Socky.Channel.extend({
 
 Socky.PresenceChannel = Socky.PrivateChannel.extend({
 
-  init: function(channel_name, socky, options) {
-    this._super(channel_name, socky, options);
+  init: function(channel_name, socky, options, data) {
+    this._super(channel_name, socky, options, data);
     this._members = {};
     this.raw_event_bind('socky:member:added', Socky.Utils.bind(this.on_member_added, this));
     this.raw_event_bind('socky:member:removed', Socky.Utils.bind(this.on_member_removed, this));

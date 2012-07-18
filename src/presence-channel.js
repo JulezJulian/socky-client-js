@@ -1,7 +1,7 @@
 Socky.PresenceChannel = Socky.PrivateChannel.extend({
 
-  init: function(channel_name, socky, options) {
-    this._super(channel_name, socky, options);
+  init: function(channel_name, socky, options, data) {
+    this._super(channel_name, socky, options, data);
     this._members = {};
     this.raw_event_bind('socky:member:added', Socky.Utils.bind(this.on_member_added, this));
     this.raw_event_bind('socky:member:removed', Socky.Utils.bind(this.on_member_removed, this));
