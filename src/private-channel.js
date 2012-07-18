@@ -7,6 +7,7 @@ Socky.PrivateChannel = Socky.Channel.extend({
       write: false,
       presence: false
     };
+    this._subscription_data = JSON.stringify(options['data']);
     this._permissions = Socky.Utils.extend({}, default_permissions, options);
   },
 
@@ -30,6 +31,7 @@ Socky.PrivateChannel = Socky.Channel.extend({
     if (this._permissions.write === true) {
       payload.write = true;
     }
+    payload.data = this._subscription_data;
     return payload;
   },
 
